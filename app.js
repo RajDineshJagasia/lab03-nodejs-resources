@@ -16,6 +16,15 @@ app.get('/contacts', (req, res) => {
 app.get('/catalogue', (req, res) => {
     res.render('catalogue'); 
    });
+
+app.get('/register', (req, res) => {
+    res.render('register'); 
+   });
+
+app.get('/login', (req, res) => {
+    res.render('login'); 
+   });
+
 //pass requests to the router middleware
 const router = require('./apis/routes');
 app.use(router);
