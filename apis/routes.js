@@ -19,7 +19,7 @@ router.get('/api/article/:id', (req, res) => {
     });
 });
 
-router.get('/api/login/:username', clientController.getClients);
+//router.get('/api/login/:username', clientController.getClients);
 
 //routes for dynamic processing of clients
 //-----------------------------------------------
@@ -27,5 +27,6 @@ router.get('/api/login/:username', clientController.getClients);
 router.post('/api/register', clientController.registerControl);
 //route for login
 router.post('/api/login', clientController.loginControl);
+router.get('/api/login/:username', clientController.getClients);
 //export router
 module.exports = router;

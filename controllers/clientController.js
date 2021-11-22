@@ -1,6 +1,26 @@
+class Client {
+    constructor(username, password, num, society, contact, address, zipcode, city, phone, fax, max_outstanding) {
+        this.username = username;
+        this.password = password;
+        this.num = num;
+        this.society = society;
+        this.contact = contact;
+        this.address = address;
+        this.zipcode = zipcode;
+        this.city = city;
+        this.phone = phone;
+        this.fax = fax;
+        this.max_outstanding = max_outstanding;
+    }
+}
+
+//const { client } = require('../models/entities');
+const clientDAO = require('../db/clientDAO');
+
 const loginControl = (request, response) => {
     const clientServices = require('../services/clientServices');
-
+    console.log(request.body.username);
+    console.log(request.body.password);
     let username = request.body.username;
     let password = request.body.password;
     if (!username || !password) {
@@ -25,7 +45,7 @@ const loginControl = (request, response) => {
                     request.session.admin = false;
                     response.send(`Login (${username}, ID.${client[0].num_client}) successful!`);
                     response.end();
-                }
+               }
             });
         }
     }
