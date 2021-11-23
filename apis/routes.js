@@ -27,7 +27,6 @@ router.get('/api/article/:id', (req, res) => {
 router.post('/api/register', clientController.registerControl);
 //route for login
 router.post('/api/login', clientController.loginControl);
-router.get('/api/login/:username', clientController.getClients);
-router.get('/api/login/:password', clientController.getClients);
+router.get('/api/login/:username', clientController.getClient);
 //export router
 module.exports = router;

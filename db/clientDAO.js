@@ -2,12 +2,12 @@ const database = require('./dbQuery');
 const bcrypt = require("bcryptjs");
 
 //select all clients
-// function find(callback) {
-//     var rows = null;
-//     //put your code her to select clients and return the array
-//     //....
-//     callback(null, rows);
-// }
+function find(callback) {
+    var rows = null;
+    //put your code her to select clients and return the array
+    //....
+    callback(null, rows);
+}
 
 function findByUsername(username, callback) {
     const selectClient = (`SELECT * from account where username like '${username}';`);
@@ -19,6 +19,19 @@ function findByUsername(username, callback) {
         }
     });
 }
+
+
+function findByNumClient(clientNumber, callback) {
+    const selectClient = (`SELECT * from account where num_client like '${clientNumber}';`);
+    database.getResult(selectClient, function(err, rows) {
+        if (!err) {
+            callback(null, rows);
+        } else {
+            console.log(err);
+        }
+    });
+}
+
 
 function cryptPassword(pass, callback) {
     //set the complexity of the salt generation
@@ -76,9 +89,9 @@ function createClient(client, callback) {
     });
 }
 
-function findByNumClient(num_client, callback) {
-    const selectNumClient = (`SELECT * from account where num_client like '${num_client}';`);
-    database.getResult(selectNumClient, function(err, rows) {
+function findClientByNumber(clientNumber, callback) {
+    const selectClient = (`SELECT * from client where num_client like '${clientNumber}';`);
+    database.getResult(selectClient, function(err, rows) {
         if (!err) {
             callback(null, rows);
         } else {
@@ -89,11 +102,9 @@ function findByNumClient(num_client, callback) {
 
 
 module.exports = {
-   // find,
+    find,
     findByUsername,
-    //findBySociety,
+    createClient,
     findByNumClient,
-    createClient
-    //deleteClient,
-    //createInitialAccounts
+    findClientByNumber,
 };
