@@ -1,11 +1,11 @@
 class Client {
-    constructor(username, password, num, society, contact, address, zipcode, city, phone, fax, max_outstanding) {
+    constructor(username, password, num, society, contact, addres, zipcode, city, phone, fax, max_outstanding) {
         this.username = username;
         this.password = password;
         this.num = num;
         this.society = society;
         this.contact = contact;
-        this.address = address;
+        this.addres = addres;
         this.zipcode = zipcode;
         this.city = city;
         this.phone = phone;
@@ -13,14 +13,12 @@ class Client {
         this.max_outstanding = max_outstanding;
     }
 }
-
-//const { client } = require('../models/entities');
+const { client } = require('../models/entities');
 const clientDAO = require('../db/clientDAO');
 
 const loginControl = (request, response) => {
     const clientServices = require('../services/clientServices');
-    console.log(request.body.username);
-    console.log(request.body.password);
+
     let username = request.body.username;
     let password = request.body.password;
     if (!username || !password) {
@@ -45,7 +43,7 @@ const loginControl = (request, response) => {
                     request.session.admin = false;
                     response.send(`Login (${username}, ID.${client[0].num_client}) successful!`);
                     response.end();
-               }
+                }
             });
         }
     }
@@ -56,7 +54,7 @@ const registerControl = (request, response) => {
     const clientServices = require('../services/clientServices');
 
     let username = request.body.username;
-    let password = request.body.passwsord;
+    let password = request.body.password;
     let society = request.body.society;
     let contact = request.body.contact;
     let addres = request.body.addres;
@@ -89,7 +87,7 @@ const getClients = (request, response) => {
     });
 };
 
-const getClientByNumclient = (request, response) => {
+const getClientByNumClient = (request, response) => {
     const clientServices = require('../services/clientServices');
     let num_client = request.params.num_client;
     clientServices.searchNumclientService(num_client, function(err, rows) {
@@ -102,5 +100,5 @@ module.exports = {
     loginControl,
     registerControl,
     getClients,
-    getClientByNumclient
+    getClientByNumClient
 };

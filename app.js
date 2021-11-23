@@ -12,10 +12,16 @@ app.use(session({ secret: 'ABoy', resave:false, cookie: { maxAge: 1000 * 60 * 60
 }))
 
 //NEW
-//send the index.html when receiving HTTP GET /
 // app.get('/', (req, res) => {
 //     res.sendFile('public/index.html', { root: __dirname });
-//    });   
+//    });
+   
+//send the index.html when receiving HTTP GET /
+// app.use(express.static('public'));
+// app.get('/', (req, res) => {
+//  res.sendFile('index.html', { root: __dirname });
+// });
+
 app.use(express.static('public'));
 app.set('view engine', 'ejs');
 app.get('/', (req, res) => {

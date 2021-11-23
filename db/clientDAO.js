@@ -63,6 +63,11 @@ function createClient(client, callback) {
     database.getResult(insertClient, function(err1, result1) {
         if (!err1) {
             //if no error insert their account
+            console.log(result1.insertId);
+            console.log("-------------------------");
+            
+            console.log("username" + client.username);
+            console.log("password" + client.password);
             createAccount(result1.insertId, client.username, client.password, callback);
         } else {
             console.log(err1);
