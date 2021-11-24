@@ -4,12 +4,12 @@ root {
 
 a {
     font-family: Verdana, Arial, Helvetica, sans-serif;
-    color: #116be0;
+    color: #000000;
     text-decoration: none;
 }
 
 a:hover {
-    background: #66ff66
+    background: #fffc66
 }
 
 a:visited {
@@ -39,8 +39,8 @@ a.lien:active {
 }
 
 .banner {
-    background-color: #cc0033;
-    height: 80px;
+    background-color: #221116;
+    height: 100px;
 }
 
 .logo {
@@ -52,11 +52,11 @@ a.lien:active {
 
 .title {
     font-family: serif;
-    font-size: 14px;
+    font-size: 40px;
     text-align: center;
-    letter-spacing: 20px;
+    letter-spacing: 1px;
     vertical-align: middle;
-    color: #0a0ae4;
+    color: #efd4ff;
 }
 
 .menu {
