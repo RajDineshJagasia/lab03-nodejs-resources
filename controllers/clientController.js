@@ -22,7 +22,7 @@ const loginControl = (request, response) => {
     let username = request.body.username;
     let password = request.body.password;
     if (!username || !password) {
-        response.render('failLogin', { username: `Login failed, please try again` });
+        response.render('failLogin', { username: username });
     } else {
         if (request.session && request.session.user) {
             response.render('afterLogin', { username: username });
@@ -30,7 +30,7 @@ const loginControl = (request, response) => {
             clientServices.loginService(username, password, function(err, dberr, client) {
                 console.log("Client from login service :" + JSON.stringify(client));
                 if (client === null) {
-                    response.render('failLogin', { username: `Login failed, please try again` });
+                    response.render('failLogin', { username: username });
                 } else {
                     console.log("User from login service :" + client[0].num_client);
                     //add to session
@@ -64,7 +64,7 @@ const registerControl = (request, response) => {
         console.log("User from register service :" + insertedID);
         if (exists) {
             console.log("Username taken!");
-            response.send(`registration failed. Username (${username}) already taken!`); //invite to register
+            response.render('registrationFailed', { username: username });
         } else {
             client.num_client = insertedID;
             console.log(`Registration (${username}, ${insertedID}) successful!`);
